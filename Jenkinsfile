@@ -53,13 +53,13 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            // Stop Docker container after build (optional)
-            // script {
-            //     echo 'Stopping Docker container...'
-            //     sh 'docker-compose down'
-            // }
-        }
-    }
+    // post {
+    //     always {
+    //         // Stop Docker container after build (optional)
+    //         script {
+    //             echo 'Stopping Docker container...'
+    //             sh 'docker-compose down'
+    //         }
+    //     }
+    // }
 }
