@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     // Check if any Docker container is running
-                    def isContainerRunning = bat(script: 'docker ps -q', returnStatus: true).trim()
+                    def isContainerRunning = bat(script: 'docker ps -q', returnStatus: true)
 
                     if (isContainerRunning) {
                         echo 'Stopping existing Docker container...'
