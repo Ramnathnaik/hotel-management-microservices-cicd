@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.microservice.rating.entity.Rating;
 
 @Repository
-public interface RatingRepository extends JpaRepository<Rating, String> {
+public interface RatingRepository extends JpaRepository<Rating, Integer> {
 
 	List<Rating> findByUserId(String UserId);
 
