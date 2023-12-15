@@ -19,6 +19,8 @@ pipeline {
                     if (isContainerRunning) {
                         echo 'Stopping existing Docker container...'
                         bat 'docker-compose down'
+                    } else {
+                        echo 'No Docker container running'
                     }
                 }
             }
