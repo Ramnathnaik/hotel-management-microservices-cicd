@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("verify tools") {
             steps {
-                bat '''
+                sh '''
                 docker version
                 docker info
                 docker compose version
@@ -14,11 +14,11 @@ pipeline {
             steps {
                 script {
                     // Check if any Docker container is running
-                    def isContainerRunning = bat(script: 'docker ps -q', returnStatus: true)
+                    def isContainerRunning = sh(script: 'docker ps -q', returnStatus: true).trim()
 
                     if (isContainerRunning) {
                         echo 'Stopping existing Docker container...'
-                        bat 'docker-compose down'
+                        sh 'docker-compose down'
                     } else {
                         echo 'No Docker container running'
                     }
@@ -27,15 +27,15 @@ pipeline {
         }
         stage('Start container') {
             steps {
-                bat 'docker compose up -d --wait'
-                bat 'docker compose ps'
+                sh 'docker compose up -d --wait'
+                sh 'docker compose ps'
             }
         }
     }
     // post {
     //     always {
-    //         bat 'docker compose down'
-    //         bat 'docker compose ps'
+    //         sh 'docker compose down'
+    //         sh 'docker compose ps'
     //     }
     // }
 }
