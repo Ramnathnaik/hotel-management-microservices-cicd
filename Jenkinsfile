@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("verify tools") {
             steps {
-                sh '''
+                bat '''
                 docker version
                 docker info
                 docker compose version
@@ -12,15 +12,15 @@ pipeline {
         }
         stage('Start container') {
             steps {
-                sh 'docker compose up -d --wait'
-                sh 'docker compose ps'
+                bat 'docker compose up -d --wait'
+                bat 'docker compose ps'
             }
         }
     }
     post {
         always {
-            sh 'docker compose down'
-            sh 'docker compose ps'
+            bat 'docker compose down'
+            bat 'docker compose ps'
         }
     }
 }
