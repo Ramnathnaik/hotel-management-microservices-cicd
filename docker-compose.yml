@@ -34,6 +34,17 @@ services:
       EUREKA_INSTANCE_HOSTNAME: hotel-management-service-registry-main
     ports:
       - 8761:8761
+  
+  hotel-management-config-server-main:
+    build: ./hotel-management-config-server-main
+    image: test_hotel-management-config-server-main
+    container_name: hotel-management-config-server-main1
+    volumes:
+      - app_data:/app/Server/Microservices
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://hotel-management-service-registry-main:8761/eureka
+    ports:
+      - 8085:8085
 
 volumes:
   mysql_db_data:
