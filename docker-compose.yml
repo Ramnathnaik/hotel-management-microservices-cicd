@@ -65,6 +65,21 @@ services:
     links:
       - mysql_db
 
+  hotel-management-hotel-service-main:
+    build: ./hotel-management-hotel-service-main
+    image: test_hotel-management-hotel-service-main
+    container_name: hotel-management-hotel-service-main1
+    volumes:
+      - app_data:/app/Server/Microservices
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db:5432/microservice
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://hotel-management-service-registry-main:8761/eureka
+      SPRING_CONFIG_IMPORT: optional:configserver:http://hotel-management-config-server-main:8085
+    ports:
+      - 8082:8082
+    links:
+      - postgres_db
+
 volumes:
   mysql_db_data:
   app_data:
