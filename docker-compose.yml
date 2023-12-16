@@ -99,6 +99,17 @@ services:
     links:
       - mysql_db
 
+  hotel-management-api-gateway-main:
+    build: ./hotel-management-api-gateway-main
+    image: test_hotel-management-api-gateway-main
+    container_name: hotel-management-api-gateway-main1
+    volumes:
+      - app_data:/app/Server/Microservices
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://hotel-management-service-registry-main:8761/eureka
+    ports:
+      - 8084:8084
+
 volumes:
   mysql_db_data:
   app_data:
