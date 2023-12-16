@@ -80,6 +80,25 @@ services:
     links:
       - postgres_db
 
+  hotel-management-rating-service-main:
+    build: ./hotel-management-rating-service-main
+    image: test_hotel-management-rating-service-main
+    container_name: hotel-management-rating-service-main1
+    volumes:
+      - app_data:/app/Server/Microservices
+    environment:
+      MYSQL_HOST: mysql_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_PORT: 3306
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:3306/rating_microservices?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://hotel-management-service-registry-main:8761/eureka
+      SPRING_CONFIG_IMPORT: optional:configserver:http://hotel-management-config-server-main:8085
+    ports:
+      - 8083:8083
+    links:
+      - mysql_db
+
 volumes:
   mysql_db_data:
   app_data:
